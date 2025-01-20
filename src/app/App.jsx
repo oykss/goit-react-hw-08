@@ -1,58 +1,72 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Backdrop, CircularProgress } from '@mui/material';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { AppBar } from '../components/AppBar/AppBar';
 import Container from '../components/Container/Container';
-import ContactsPage from '../pages/ContactsPage/ContactsPage';
-import HomePage from '../pages/HomePage/HomePage';
-import LoginPage from '../pages/LoginPage/LoginPage';
-import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import { PrivateRoute } from '../PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
-import { selectIsRefreshing } from '../redux/auth/selectors';
 import { RestrictedRoute } from '../RestrictedRoute';
 
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
+
 export default function App() {
-  const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return (
     <>
       <AppBar />
       <Container>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/tasks"
-                component={<RegisterPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-            }
-          />
-        </Routes>
+        <Suspense
+          fallback={
+            <Backdrop
+              sx={theme => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+              open={true}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<RegisterPage />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<LoginPage />}
+                />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<ContactsPage />}
+                />
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </Container>
     </>
   );

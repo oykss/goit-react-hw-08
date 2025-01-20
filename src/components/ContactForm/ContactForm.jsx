@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { VscAdd } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
@@ -33,10 +34,10 @@ export default function ContactForm() {
             placeholder="Telephone number"
           />
         </label>
-        <button type="submit" className={css.btn}>
+        <Button variant="contained" type="submit" className={css.btn}>
           <VscAdd className={css.icon} />
           Add
-        </button>
+        </Button>
       </Form>
     </Formik>
   );

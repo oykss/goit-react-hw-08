@@ -1,9 +1,13 @@
 .form {
-  padding: 40px 0;
+  padding: 20px 0;
   display: grid;
   align-items: center;
   gap: 20px;
   justify-content: center;
+
+  & input {
+    width: 250px !important;
+  }
 
   @media (min-width: 768px) {
     display: flex;
@@ -12,19 +16,11 @@
 
 .btn {
   display: flex;
-  width: 60px;
-  padding: 2px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
+  gap: 4px;
+}
 
-  transition: all 250ms ease-in-out;
-
-  &:is(:hover, :focus) {
-    transform: scale(105%);
-  }
-
-  @media (min-width: 768px) {
-    margin: 0;
-  }
+.icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
 }

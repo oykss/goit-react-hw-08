@@ -1,0 +1,11 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+
+  gap: 20px;
+  & button {
+    font-size: 24px;
+  }
+}

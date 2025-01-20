@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { BsTelephone } from 'react-icons/bs';
 import { VscAccount, VscChromeClose } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
@@ -20,10 +21,16 @@ export default function Contact({ id, name, number }) {
           <p className={css.number}>{number}</p>
         </div>
       </div>
-      <button onClick={handleDelete} className={css.btn}>
+
+      <Button
+        variant="contained"
+        color="error"
+        onClick={handleDelete}
+        className={css.btn}
+      >
         <VscChromeClose className={css.icon} />
         Delete
-      </button>
+      </Button>
     </div>
   );
 }

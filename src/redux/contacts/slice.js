@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 import { logOut } from '../auth/operations';
 import { addContact, deleteContact, fetchContacts } from './operations';
 
@@ -15,6 +16,7 @@ const handlePending = state => {
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
+  toast.error('Something went wrong');
 };
 
 const slice = createSlice({
@@ -34,6 +36,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         state.items.push(action.payload);
+        toast.success('Contact added successfully');
       })
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
@@ -41,6 +44,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         state.items = state.items.filter(({ id }) => id !== action.payload.id);
+        toast.success('Contact deleted successfully');
       })
       .addCase(deleteContact.rejected, handleRejected)
       .addCase(logOut.fulfilled, state => {

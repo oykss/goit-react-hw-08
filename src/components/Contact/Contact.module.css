@@ -2,31 +2,14 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  width: 350px;
+  width: 340px;
   padding: 20px;
-  border: 1px solid;
+  border: 1px solid #212121;
   border-radius: 12px;
   transition: all 250ms ease-in-out;
 
   &:hover {
-    transform: scale(98%);
-  }
-}
-
-.btn {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  gap: 2px;
-  color: #fff;
-  background-color: red;
-  padding: 2px 4px;
-  border-radius: 6px;
-  opacity: 0.8;
-  transition: all 250ms ease-in-out;
-
-  &:is(:hover, :focus) {
-    opacity: 1;
+    transform: scale(99%);
   }
 }
 
@@ -34,19 +17,29 @@
   display: flex;
   align-items: center;
   gap: 8px;
+
+  & .icon {
+    color: #212121;
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .number,
 .name {
   font-size: 20px;
-  width: 180px;
+  width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.icon {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+.btn {
+  display: flex;
+  gap: 4px;
+
+  & .icon {
+    width: 18px;
+    height: 18px;
+  }
 }

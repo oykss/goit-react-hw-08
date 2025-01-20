@@ -14,36 +14,40 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form>
-        <label className="textInputWrapper">
-          <Field
-            className="textInput"
-            type="text"
-            name="name"
-            placeholder="Name"
-          />
-        </label>
-        <label className="textInputWrapper">
-          <Field
-            className="textInput"
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
-        </label>
-        <label className="textInputWrapper">
-          <Field
-            className="textInput"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </label>
-        <Button variant="contained" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Formik>
+    <div className="wrap">
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Form className="form">
+          <p className="title">Register </p>
+          <p className="message">Signup now and get full access to our app. </p>
+          <label className="textInputWrapper">
+            <Field
+              className="textInput"
+              type="text"
+              name="name"
+              placeholder="Name"
+            />
+          </label>
+          <label className="textInputWrapper">
+            <Field
+              className="textInput"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+          </label>
+          <label className="textInputWrapper">
+            <Field
+              className="textInput"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+          </label>
+          <Button variant="contained" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Formik>
+    </div>
   );
 };

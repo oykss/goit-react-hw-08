@@ -13,8 +13,9 @@ export const selectFilterContacts = createSelector(
 
     if (filter.length === 0) return contactsReverse;
 
-    return contactsReverse.filter(({ name }) =>
-      name.toLowerCase().includes(filter)
+    return contactsReverse.filter(
+      ({ name, number }) =>
+        name.toLowerCase().includes(filter) || number.includes(filter)
     );
   }
 );
