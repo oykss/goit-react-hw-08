@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebouncedCallback } from 'use-debounce';
@@ -22,14 +23,17 @@ export default function SearchBox() {
   };
 
   return (
-    <label className={css.wrap}>
-      <input
-        type="text"
-        name="search"
-        value={searchTerm}
-        onChange={handleChange}
-        placeholder="Find name"
-      />
-    </label>
+    <div className={css.wrap}>
+      <label className={clsx('textInputWrapper', css.input)}>
+        <input
+          className="textInput"
+          type="text"
+          name="search"
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder="Find name"
+        />
+      </label>
+    </div>
   );
 }

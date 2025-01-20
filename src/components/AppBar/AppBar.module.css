@@ -1,0 +1,21 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 12px 0;
+  background-color: #212121;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home {
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}

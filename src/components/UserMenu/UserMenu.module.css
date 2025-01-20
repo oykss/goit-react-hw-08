@@ -1,0 +1,12 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0px 16px;
+}

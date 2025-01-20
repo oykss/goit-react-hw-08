@@ -17,19 +17,19 @@ export default function ContactForm() {
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className={css.form}>
-        <label>
+        <label className="textInputWrapper">
           <Field
+            className="textInput"
             name="name"
             type="text"
-            className={css.input}
             placeholder="Contact name"
           />
         </label>
-        <label>
+        <label className="textInputWrapper">
           <Field
+            className="textInput"
             name="number"
             type="text"
-            className={css.input}
             placeholder="Telephone number"
           />
         </label>
