@@ -2,8 +2,8 @@ import { Backdrop, CircularProgress } from '@mui/material';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { AppBar } from '../components/AppBar/AppBar';
 import Container from '../components/Container/Container';
+import Layout from '../components/Layout/Layout';
 import { PrivateRoute } from '../PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
 import { RestrictedRoute } from '../RestrictedRoute';
@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <>
-      <AppBar />
+      <Layout />
       <Container>
         <Suspense
           fallback={

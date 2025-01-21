@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { AuthNav } from '../AuthNav/AuthNav';
 import Container from '../Container/Container';
+import Navigation from '../Navigation/Navigation';
 import { UserMenu } from '../UserMenu/UserMenu';
 import css from './AppBar.module.css';
 
@@ -12,9 +12,7 @@ export const AppBar = () => {
   return (
     <header className={css.header}>
       <Container className={css.content}>
-        <NavLink className={css.home} to="/">
-          Home
-        </NavLink>
+        <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Container>
     </header>
