@@ -5,3 +5,9 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

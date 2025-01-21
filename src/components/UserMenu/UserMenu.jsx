@@ -1,7 +1,6 @@
 import { Button, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { logOut } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
 import css from './UserMenu.module.css';
@@ -21,11 +20,7 @@ export const UserMenu = () => {
   };
 
   return (
-    <div className={css.wrap}>
-      <NavLink className={css.link} to="/contacts">
-        <Button variant="contained">Task</Button>
-      </NavLink>
-
+    <>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -55,6 +50,6 @@ export const UserMenu = () => {
           Logout
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 };

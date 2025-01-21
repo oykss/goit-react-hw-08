@@ -1,11 +1,12 @@
-import { Backdrop, CircularProgress } from '@mui/material';
 import { lazy, Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import BackdropApp from '../components/Backdrop/Backdrop';
 import Container from '../components/Container/Container';
 import Layout from '../components/Layout/Layout';
 import { PrivateRoute } from '../PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
+import { selectIsRefreshing } from '../redux/auth/selectors';
 import { RestrictedRoute } from '../RestrictedRoute';
 
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
@@ -16,25 +17,18 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <>
-      <Layout />
+  return isRefreshing ? (
+    <BackdropApp />
+  ) : (
+    <Layout>
       <Container>
-        <Suspense
-          fallback={
-            <Backdrop
-              sx={theme => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-              open={true}
-            >
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          }
-        >
+        <Suspense fallback={<BackdropApp />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -68,6 +62,6 @@ export default function App() {
           </Routes>
         </Suspense>
       </Container>
-    </>
+    </Layout>
   );
 }
